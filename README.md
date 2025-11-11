@@ -120,9 +120,14 @@ export AWS_SECRET_ACCESS_KEY=your_secret
 - `output/risk_report.md` - Risk analysis report
 - `output/risk_report.pdf` - Risk analysis PDF (with dead vehicle highlighting)
 
+## Project Structure
+
+See `STRUCTURE.md` for a detailed overview of the codebase organization.
+
 ## Notes
 
 - All pipelines skip corrupt or invalid logs automatically
 - The parallel streaming pipeline is recommended for speed and efficiency
 - Vehicle filtering is case-insensitive and supports formats like "EL-045" or "el-045"
-- Dead vehicle highlighting requires `isDead.csv` with columns: `vehicle_id,dead` (where `dead=1` marks dead vehicles)
+- Dead vehicle highlighting requires `isDead.csv` (copy from `config/isDead.csv.example`)
+- Output files are gitignored - see `.gitignore` for details

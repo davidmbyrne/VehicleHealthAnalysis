@@ -1,0 +1,8 @@
+vehicle_id,dead
+EL-017,0
+EL-018,0
+EL-019,1
+EL-020,0
+# Add your vehicles here
+# dead=1 marks a vehicle as dead (will be highlighted in risk report PDF)
+

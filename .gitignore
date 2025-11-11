@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Output files (keep structure but ignore contents)
+output/*
+!output/.gitkeep
+data/ulogs/*
+
+# Generated files
+*.csv
+*.pdf
+*.md
+!README.md
+!requirements.txt
+!AGENTS.md
+
+# Config files with sensitive data
+s3priv.md
+isDead.csv
+config/*.csv
+!config/*.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak

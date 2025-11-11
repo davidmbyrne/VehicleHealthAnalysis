@@ -26,7 +26,15 @@ def load_dead_vehicles(is_dead_csv: Path | None = None) -> Set[str]:
     """Load set of dead vehicle IDs from CSV file."""
     dead_vehicles: Set[str] = set()
     
-    csv_path = is_dead_csv or Path("isDead.csv")
+    # Check multiple possible locations
+    if is_dead_csv is None:
+        # Try config directory first, then root
+        csv_path = Path("config/isDead.csv")
+        if not csv_path.exists():
+            csv_path = Path("isDead.csv")
+    else:
+        csv_path = is_dead_csv
+    
     if not csv_path.exists():
         return dead_vehicles
     
@@ -307,8 +315,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--is_dead_csv",
         type=Path,
-        default=Path("isDead.csv"),
-        help="Path to CSV file with dead vehicle information (default: isDead.csv)",
+        default=None,
+        help="Path to CSV file with dead vehicle information (default: checks config/isDead.csv then isDead.csv)",
     )
     return parser.parse_args()
 
