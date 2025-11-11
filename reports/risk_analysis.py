@@ -10,8 +10,15 @@ Identifies vehicles with:
 """
 
 import argparse
+import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
+
+# Add parent directory to path so we can import utils
+# Resolve to absolute path to handle symlinks and relative paths
+_script_dir = Path(__file__).resolve().parent.parent
+if str(_script_dir) not in sys.path:
+    sys.path.insert(0, str(_script_dir))
 
 import pandas as pd
 

@@ -7,8 +7,15 @@ Convert the Markdown report into a branded PDF inspired by the Rainmaker templat
 
 import argparse
 import re
+import sys
 from pathlib import Path
 from typing import List
+
+# Add parent directory to path
+# Resolve to absolute path to handle symlinks and relative paths
+_script_dir = Path(__file__).resolve().parent.parent
+if str(_script_dir) not in sys.path:
+    sys.path.insert(0, str(_script_dir))
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
