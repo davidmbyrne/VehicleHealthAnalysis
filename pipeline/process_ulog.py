@@ -18,8 +18,8 @@ import numpy as np
 from pyulog import ULog
 
 from utils.logging_utils import get_logger
-from motor_output_metrics import compute_motor_output_time_above_thresholds, DEFAULT_MOTOR_OUTPUT_THRESHOLDS
-from fatigue_metrics import compute_fatigue_metrics
+from pipeline.motor_output_metrics import compute_motor_output_time_above_thresholds, DEFAULT_MOTOR_OUTPUT_THRESHOLDS
+from pipeline.fatigue_metrics import compute_fatigue_metrics
 
 
 logger = get_logger(__name__)

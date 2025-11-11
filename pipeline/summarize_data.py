@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from utils.logging_utils import get_logger
-from process_ulog import ProcessedULog
+from pipeline.process_ulog import ProcessedULog
 
 
 logger = get_logger(__name__)

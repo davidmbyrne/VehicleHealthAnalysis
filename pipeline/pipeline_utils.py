@@ -9,7 +9,7 @@ from dataclasses import replace
 from pathlib import Path
 from typing import Iterable, List, Optional, Union
 
-from process_ulog import ProcessedULog
+from pipeline.process_ulog import ProcessedULog
 
 
 def resolve_vehicle_filter(vehicles: Union[None, str, Iterable[str]]) -> Optional[List[str]]:

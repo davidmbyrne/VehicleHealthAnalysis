@@ -14,6 +14,8 @@ python3 parallel_streaming_pipeline.py \
   --workers 6
 ```
 
+**Note:** All scripts are run from the project root directory.
+
 This will:
 1. Stream logs directly from S3 (no local storage)
 2. Process multiple logs in parallel
@@ -34,19 +36,19 @@ This will:
 
 ### Main Report (Vehicle Statistics)
 ```bash
-python3 render_pdf.py --report output/report.md --pdf output/report.pdf
+python3 reports/render_pdf.py --report output/report.md --pdf output/report.pdf
 ```
 
 ### Risk Analysis Report
 ```bash
 # Generate risk report
-python3 risk_analysis.py --output output/risk_report.md
+python3 reports/risk_analysis.py --output output/risk_report.md
 
 # Convert to PDF (dead vehicles highlighted in red)
-python3 render_risk_pdf.py --report output/risk_report.md --pdf output/risk_report.pdf
+python3 reports/render_risk_pdf.py --report output/risk_report.md --pdf output/risk_report.pdf
 ```
 
-The risk PDF will automatically highlight vehicles marked as dead in `isDead.csv` (where `dead=1`) with a light red background.
+The risk PDF will automatically highlight vehicles marked as dead in `config/isDead.csv` (where `dead=1`) with a light red background.
 
 ## Other Pipeline Options
 
@@ -90,7 +92,7 @@ python3 main.py \
 Generate a risk report ranking vehicles by composite risk score:
 
 ```bash
-python3 risk_analysis.py \
+python3 reports/risk_analysis.py \
   --aggregated_csv output/aggregated_by_vehicle.csv \
   --output output/risk_report.md
 ```
@@ -129,5 +131,5 @@ See `STRUCTURE.md` for a detailed overview of the codebase organization.
 - All pipelines skip corrupt or invalid logs automatically
 - The parallel streaming pipeline is recommended for speed and efficiency
 - Vehicle filtering is case-insensitive and supports formats like "EL-045" or "el-045"
-- Dead vehicle highlighting requires `isDead.csv` (copy from `config/isDead.csv.example`)
+- Dead vehicle highlighting requires `config/isDead.csv` (copy from `config/isDead.csv.example`)
 - Output files are gitignored - see `.gitignore` for details

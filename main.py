@@ -18,11 +18,11 @@ import argparse
 from pathlib import Path
 
 from utils.logging_utils import get_logger
-from download_from_s3 import download_ulog_folder
-from process_ulog import process_one_ulog, CorruptULogError
-from summarize_data import summarize_processed_log
-from aggregate_reports import aggregate_summaries_by_vehicle
-from generate_report import generate_final_report
+from pipeline.download_from_s3 import download_ulog_folder
+from pipeline.process_ulog import process_one_ulog, CorruptULogError
+from pipeline.summarize_data import summarize_processed_log
+from pipeline.aggregate_reports import aggregate_summaries_by_vehicle
+from pipeline.generate_report import generate_final_report
 
 
 def parse_args() -> argparse.Namespace:
