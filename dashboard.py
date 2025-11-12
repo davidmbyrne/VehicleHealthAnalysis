@@ -9,6 +9,7 @@ and stress indicators derived from aggregated ULog telemetry.
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 from typing import Optional
@@ -298,20 +299,16 @@ def apply_plotly_theme(fig: px.Figure) -> px.Figure:
 
 def render_section_header(icon: Optional[str], title: str, subtitle: str = "") -> None:
     """Render a consistent section header, optionally showing an icon."""
-    icon_block = f'<div class="section-icon">{icon}</div>' if icon else ""
-    subtitle_block = f'<p class="section-subtitle">{subtitle}</p>' if subtitle else ""
-    html = _dedent(
-        f"""
-        <div class="section-header">
-            {icon_block}
-            <div>
-                <h2>{title}</h2>
-                {subtitle_block}
-            </div>
-        </div>
-        """
-    ).strip()
-    st.markdown(html, unsafe_allow_html=True)
+    parts = ['<div class="section-header">']
+    if icon:
+        parts.append(f'    <div class="section-icon">{icon}</div>')
+    parts.append("    <div>")
+    parts.append(f"        <h2>{title}</h2>")
+    if subtitle:
+        parts.append(f'        <p class="section-subtitle">{subtitle}</p>')
+    parts.append("    </div>")
+    parts.append("</div>")
+    st.markdown("\n".join(parts), unsafe_allow_html=True)
 
 
 def render_metric_card(label: str, value: str, caption: str = "") -> None:
@@ -369,6 +366,46 @@ def render_summary_metrics(filtered_df: pd.DataFrame) -> None:
             render_metric_card(*metric)
 
 
+def load_csv_from_s3_or_local(csv_path: str, s3_bucket: Optional[str] = None, s3_key: Optional[str] = None) -> Optional[pd.DataFrame]:
+    """Load CSV file from local path or S3 if local file doesn't exist.
+    
+    Args:
+        csv_path: Local file path
+        s3_bucket: Optional S3 bucket name (from env var or parameter)
+        s3_key: Optional S3 key/path (defaults to csv_path if bucket provided)
+    
+    Returns:
+        DataFrame if file exists (locally or in S3), None otherwise
+    """
+    local_path = Path(csv_path)
+    
+    # Try local file first
+    if local_path.exists():
+        return pd.read_csv(local_path)
+    
+    # Try S3 if bucket is configured
+    s3_bucket = s3_bucket or os.getenv("S3_DATA_BUCKET")
+    if s3_bucket:
+        try:
+            import boto3
+            s3_key = s3_key or csv_path
+            s3 = boto3.client("s3")
+            
+            # Download to temp location
+            import tempfile
+            with tempfile.NamedTemporaryFile(mode='w+b', suffix='.csv', delete=False) as tmp:
+                tmp_path = Path(tmp.name)
+            
+            s3.download_file(s3_bucket, s3_key, str(tmp_path))
+            df = pd.read_csv(tmp_path)
+            tmp_path.unlink()  # Clean up temp file
+            return df
+        except Exception as e:
+            st.warning(f"Failed to load from S3 (s3://{s3_bucket}/{s3_key}): {e}")
+    
+    return None
+
+
 def load_dead_vehicles() -> set[str]:
     """Load dead vehicle IDs from config/isDead.csv if present."""
     dead_csv = Path("config/isDead.csv")
@@ -382,12 +419,20 @@ def load_dead_vehicles() -> set[str]:
         return set()
 
 
-def load_data(aggregated_csv: Path) -> pd.DataFrame:
-    """Load aggregated telemetry and compute risk breakdown per vehicle."""
-    if not aggregated_csv.exists():
+def load_data(aggregated_csv: Path | pd.DataFrame) -> pd.DataFrame:
+    """Load aggregated telemetry and compute risk breakdown per vehicle.
+    
+    Args:
+        aggregated_csv: Path to CSV file or DataFrame
+    """
+    if isinstance(aggregated_csv, pd.DataFrame):
+        raw_df = aggregated_csv
+    elif isinstance(aggregated_csv, Path):
+        if not aggregated_csv.exists():
+            return pd.DataFrame()
+        raw_df = pd.read_csv(aggregated_csv)
+    else:
         return pd.DataFrame()
-
-    raw_df = pd.read_csv(aggregated_csv)
 
     risk_rows: list[dict[str, float]] = []
     for _, row in raw_df.iterrows():
@@ -416,7 +461,7 @@ def load_data(aggregated_csv: Path) -> pd.DataFrame:
 
 
 def render_risk_table(filtered_df: pd.DataFrame) -> None:
-    """Render a stylised risk table with dead vehicle highlighting."""
+    """Render a stylised risk table with dead vehicle highlighting and sortable columns."""
     display_df = filtered_df[
         [
             "rank",
@@ -455,32 +500,48 @@ def render_risk_table(filtered_df: pd.DataFrame) -> None:
 
     display_df["Status"] = display_df.pop("is_dead").map({True: "DEAD", False: "ACTIVE"})
 
-    def style_dead(row: pd.Series) -> list[str]:
+    # Format numeric columns
+    display_df["Risk Score"] = display_df["Risk Score"].round(2)
+    display_df["Vib Score"] = display_df["Vib Score"].round(2)
+    display_df["Motor Score"] = display_df["Motor Score"].round(2)
+    display_df["Fatigue Score"] = display_df["Fatigue Score"].round(2)
+    display_df["High Vib %"] = display_df["High Vib %"].round(1)
+    display_df["Sat %"] = display_df["Sat %"].round(1)
+    display_df["Flight Time (min)"] = display_df["Flight Time (min)"].round(1)
+
+    # Configure column formatting and styling
+    column_config = {
+        "Rank": st.column_config.NumberColumn("Rank", format="%d"),
+        "Vehicle": st.column_config.TextColumn("Vehicle"),
+        "Risk Score": st.column_config.NumberColumn("Risk Score", format="%.2f"),
+        "Vib Score": st.column_config.NumberColumn("Vib Score", format="%.2f"),
+        "Motor Score": st.column_config.NumberColumn("Motor Score", format="%.2f"),
+        "Fatigue Score": st.column_config.NumberColumn("Fatigue Score", format="%.2f"),
+        "High Vib %": st.column_config.NumberColumn("High Vib %", format="%.1f%%"),
+        "Sat %": st.column_config.NumberColumn("Sat %", format="%.1f%%"),
+        "Peak Samples": st.column_config.NumberColumn("Peak Samples", format="%d"),
+        "Clipping Samples": st.column_config.NumberColumn("Clipping Samples", format="%d"),
+        "Flight Time (min)": st.column_config.NumberColumn("Flight Time (min)", format="%.1f"),
+        "Logs": st.column_config.NumberColumn("Logs", format="%d"),
+        "Status": st.column_config.TextColumn("Status"),
+    }
+
+    # Apply row styling for DEAD vehicles
+    def highlight_dead(row: pd.Series) -> list[str]:
         if row.get("Status") == "DEAD":
             return [
-                "background-color: var(--danger-soft); color: var(--text-primary); border-bottom: 1px solid rgba(255, 107, 107, 0.35);"
+                f"background-color: {THEME['danger_soft']}; color: {THEME['text_primary']};"
             ] * len(row)
         return [""] * len(row)
 
-    styled_df = (
-        display_df.style
-        .format(
-            {
-                "Risk Score": "{:.2f}",
-                "Vib Score": "{:.2f}",
-                "Motor Score": "{:.2f}",
-                "Fatigue Score": "{:.2f}",
-                "High Vib %": "{:.1f}%",
-                "Sat %": "{:.1f}%",
-                "Flight Time (min)": "{:.1f}",
-            }
-        )
-        .set_table_attributes('class="tech-table"')
-        .set_properties(**{"border": "none", "font-size": "0.9rem"})
-        .apply(style_dead, axis=1)
-    )
+    styled_df = display_df.style.apply(highlight_dead, axis=1)
 
-    st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+    st.dataframe(
+        styled_df,
+        column_config=column_config,
+        use_container_width=True,
+        hide_index=True,
+    )
 
 
 def render_vehicle_details(vehicle_data: pd.Series) -> None:
@@ -552,20 +613,24 @@ def main() -> None:
         help="Path to aggregated_by_vehicle.csv generated by the pipeline",
     )
 
-    aggregated_csv = Path(csv_path)
-    if not aggregated_csv.exists():
+    # Try to load CSV (local or S3)
+    raw_df = load_csv_from_s3_or_local(csv_path)
+    if raw_df is None:
         st.error(f"File not found: {csv_path}")
+        s3_bucket = os.getenv("S3_DATA_BUCKET")
+        if s3_bucket:
+            st.info(f"Also checked S3 bucket: {s3_bucket}")
         st.info(
             "Run the pipeline to generate aggregated metrics:\n"
             "```bash\n"
             "python3 parallel_streaming_pipeline.py --bucket rm-prophet --prefix ulogs/\n"
-            "```"
+            "```\n\n"
+            "Or set S3_DATA_BUCKET environment variable to load from S3."
         )
-
-
         return
 
-    df = load_data(aggregated_csv)
+    # Process the loaded data (calculates risk scores)
+    df = load_data(raw_df)
     dead_vehicles = load_dead_vehicles()
 
     if df.empty:
