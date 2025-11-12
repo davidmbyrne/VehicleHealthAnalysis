@@ -39,7 +39,6 @@ output/*
 data/ulogs/*
 
 # Generated files
-*.csv
 *.pdf
 *.md
 !README.md
@@ -48,8 +47,6 @@ data/ulogs/*
 
 # Config files with sensitive data
 s3priv.md
-isDead.csv
-config/*.csv
 !config/*.example
 
 # OS
