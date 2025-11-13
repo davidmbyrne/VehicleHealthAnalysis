@@ -1,11 +1,11 @@
 # PX4 ULog Report
 
-- Total vehicles: 40
-- Total logs processed: 853
+- Total vehicles: 46
+- Total logs processed: 980
 
 ## Vehicles
 
-- Vehicles in report: EL-017, EL-018, EL-019, EL-020, EL-022, EL-023, EL-026, EL-027, EL-028, EL-031, EL-034, EL-038, EL-039, EL-040, EL-041, EL-042, EL-043, EL-044, EL-045, EL-046, EL-048, EL-049, EL-050, EL-051, EL-052, EL052, EL-053, EL-054, EL-056, EL-058, EL-059, EL-060, EL-062, EL-065, EL-066, EL-067, EL-068, EL-069, EL-070, EL-074
+- Vehicles in report: EL-017, EL-018, EL-019, EL-020, EL-022, EL-023, EL-026, EL-027, EL-028, EL-031, EL-034, EL-038, EL-039, EL-040, EL-041, EL-042, EL-043, EL-044, EL-045, EL-046, EL-047, EL-048, EL-049, EL-050, EL-051, EL-052, EL-053, EL-054, EL-056, EL-058, EL-059, EL-060, EL-062, EL-065, EL-066, EL-067, EL-068, EL-069, EL-070, EL-071, EL-072, EL-073, EL-074, EL-076, EL-077, EL-083
 
 ### Vehicle EL-017
 - Logs processed: 32
@@ -92,7 +92,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 1 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 4 count |
 
 ### Vehicle EL-020
 - Logs processed: 16
@@ -121,7 +121,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 0 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 327 count |
 
 ### Vehicle EL-022
 - Logs processed: 16
@@ -150,7 +150,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 1 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 89 count |
 
 ### Vehicle EL-023
 - Logs processed: 1
@@ -294,8 +294,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 54 count |
-| Accel clipping time | 8.00 s |
-| Accel clipping events | 8 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 503 count |
 
 ### Vehicle EL-034
 - Logs processed: 41
@@ -323,8 +323,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 10 count |
-| Accel clipping time | 1.00 s |
-| Accel clipping events | 1 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 89 count |
 
 ### Vehicle EL-038
 - Logs processed: 18
@@ -353,7 +353,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 2 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 121 count |
 
 ### Vehicle EL-039
 - Logs processed: 48
@@ -381,11 +381,11 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 154 count |
-| Accel clipping time | 20.00 s |
-| Accel clipping events | 20 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 8953 count |
 
 ### Vehicle EL-040
-- Logs processed: 58
+- Logs processed: 88
 | Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
 | --- | ---: | ---: | ---: |
 | Motor 0 | 0.0 | 0.0 | 0.0 |
@@ -395,23 +395,23 @@
 
 | Threshold | Total time (min) |
 | --- | ---: |
-| >= 0.8 | 0.0 |
+| >= 0.8 | 0.1 |
 | >= 0.9 | 0.0 |
 | >= 1 | 0.0 |
 
 | Accel bin | Time (min) | Share |
 | --- | ---: | ---: |
-| < 30 m/s² | 522.3 | 82.4% |
-| 30–50 m/s² | 101.6 | 16.0% |
-| 50–70 m/s² | 8.8 | 1.4% |
-| > 70 m/s² | 0.9 | 0.1% |
-| Total tracked | 633.5 | 100.0% |
+| < 30 m/s² | 841.2 | 68.5% |
+| 30–50 m/s² | 294.1 | 23.9% |
+| 50–70 m/s² | 71.3 | 5.8% |
+| > 70 m/s² | 22.2 | 1.8% |
+| Total tracked | 1228.7 | 100.0% |
 
 | Fatigue Metric | Value |
 | --- | ---: |
-| Peak accel events (>100 m/s²) | 5 count |
+| Peak accel events (>100 m/s²) | 141 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 46 count |
 
 ### Vehicle EL-041
 - Logs processed: 17
@@ -584,8 +584,37 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 102 count |
-| Accel clipping time | 1.00 s |
-| Accel clipping events | 1 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
+
+### Vehicle EL-047
+- Logs processed: 9
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.0 | 0.0 | 0.0 |
+| Motor 3 | 0.0 | 0.0 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.0 |
+| >= 0.9 | 0.0 |
+| >= 1 | 0.0 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 53.4 | 68.0% |
+| 30–50 m/s² | 19.1 | 24.3% |
+| 50–70 m/s² | 4.9 | 6.2% |
+| > 70 m/s² | 1.3 | 1.6% |
+| Total tracked | 78.6 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 3 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
 
 ### Vehicle EL-048
 - Logs processed: 29
@@ -613,8 +642,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 25 count |
-| Accel clipping time | 1.00 s |
-| Accel clipping events | 1 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 141 count |
 
 ### Vehicle EL-049
 - Logs processed: 11
@@ -671,17 +700,17 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 32 count |
-| Accel clipping time | 2.00 s |
-| Accel clipping events | 2 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 656 count |
 
 ### Vehicle EL-051
-- Logs processed: 107
+- Logs processed: 114
 | Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
 | --- | ---: | ---: | ---: |
 | Motor 0 | 3.2 | 2.2 | 1.6 |
-| Motor 1 | 2.9 | 1.0 | 0.7 |
+| Motor 1 | 3.0 | 1.0 | 0.7 |
 | Motor 2 | 2.7 | 1.7 | 1.1 |
-| Motor 3 | 3.5 | 1.4 | 0.8 |
+| Motor 3 | 3.6 | 1.4 | 0.8 |
 
 | Threshold | Total time (min) |
 | --- | ---: |
@@ -691,17 +720,17 @@
 
 | Accel bin | Time (min) | Share |
 | --- | ---: | ---: |
-| < 30 m/s² | 380.9 | 55.9% |
-| 30–50 m/s² | 179.7 | 26.4% |
-| 50–70 m/s² | 78.1 | 11.5% |
-| > 70 m/s² | 43.0 | 6.3% |
-| Total tracked | 681.7 | 100.0% |
+| < 30 m/s² | 441.0 | 56.9% |
+| 30–50 m/s² | 204.6 | 26.4% |
+| 50–70 m/s² | 84.3 | 10.9% |
+| > 70 m/s² | 44.9 | 5.8% |
+| Total tracked | 774.9 | 100.0% |
 
 | Fatigue Metric | Value |
 | --- | ---: |
-| Peak accel events (>100 m/s²) | 548 count |
-| Accel clipping time | 19.01 s |
-| Accel clipping events | 19 count |
+| Peak accel events (>100 m/s²) | 567 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 1072 count |
 
 ### Vehicle EL-052
 - Logs processed: 1
@@ -725,35 +754,6 @@
 | 50–70 m/s² | 1.1 | 7.8% |
 | > 70 m/s² | 0.1 | 0.6% |
 | Total tracked | 14.0 | 100.0% |
-
-| Fatigue Metric | Value |
-| --- | ---: |
-| Peak accel events (>100 m/s²) | 0 count |
-| Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
-
-### Vehicle EL052
-- Logs processed: 2
-| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
-| --- | ---: | ---: | ---: |
-| Motor 0 | 0.0 | 0.0 | 0.0 |
-| Motor 1 | 0.0 | 0.0 | 0.0 |
-| Motor 2 | 0.0 | 0.0 | 0.0 |
-| Motor 3 | 0.0 | 0.0 | 0.0 |
-
-| Threshold | Total time (min) |
-| --- | ---: |
-| >= 0.8 | 0.0 |
-| >= 0.9 | 0.0 |
-| >= 1 | 0.0 |
-
-| Accel bin | Time (min) | Share |
-| --- | ---: | ---: |
-| < 30 m/s² | 0.9 | 87.1% |
-| 30–50 m/s² | 0.1 | 9.7% |
-| 50–70 m/s² | 0.0 | 3.2% |
-| > 70 m/s² | 0.0 | 0.0% |
-| Total tracked | 1.0 | 100.0% |
 
 | Fatigue Metric | Value |
 | --- | ---: |
@@ -788,7 +788,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 43 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 134 count |
 
 ### Vehicle EL-054
 - Logs processed: 9
@@ -817,7 +817,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 16 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 108 count |
 
 ### Vehicle EL-056
 - Logs processed: 4
@@ -962,7 +962,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 2 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 59 count |
 
 ### Vehicle EL-065
 - Logs processed: 15
@@ -990,8 +990,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 114 count |
-| Accel clipping time | 10.00 s |
-| Accel clipping events | 10 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 680 count |
 
 ### Vehicle EL-066
 - Logs processed: 16
@@ -1019,8 +1019,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 178 count |
-| Accel clipping time | 4.00 s |
-| Accel clipping events | 4 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
 
 ### Vehicle EL-067
 - Logs processed: 7
@@ -1048,8 +1048,8 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 93 count |
-| Accel clipping time | 1.00 s |
-| Accel clipping events | 1 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
 
 ### Vehicle EL-068
 - Logs processed: 6
@@ -1078,7 +1078,7 @@
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 3 count |
 | Accel clipping time | 0.00 s |
-| Accel clipping events | 0 count |
+| Accel clipping events | 11 count |
 
 ### Vehicle EL-069
 - Logs processed: 9
@@ -1138,6 +1138,93 @@
 | Accel clipping time | 0.00 s |
 | Accel clipping events | 0 count |
 
+### Vehicle EL-071
+- Logs processed: 5
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.0 | 0.0 | 0.0 |
+| Motor 3 | 0.0 | 0.0 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.0 |
+| >= 0.9 | 0.0 |
+| >= 1 | 0.0 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 52.6 | 77.3% |
+| 30–50 m/s² | 13.6 | 19.9% |
+| 50–70 m/s² | 1.7 | 2.5% |
+| > 70 m/s² | 0.2 | 0.3% |
+| Total tracked | 68.1 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 0 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
+
+### Vehicle EL-072
+- Logs processed: 7
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.1 | 0.0 | 0.0 |
+| Motor 3 | 0.0 | 0.0 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.1 |
+| >= 0.9 | 0.1 |
+| >= 1 | 0.1 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 79.9 | 73.4% |
+| 30–50 m/s² | 24.9 | 22.8% |
+| 50–70 m/s² | 3.3 | 3.0% |
+| > 70 m/s² | 0.8 | 0.8% |
+| Total tracked | 108.8 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 9 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
+
+### Vehicle EL-073
+- Logs processed: 21
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.0 | 0.0 | 0.0 |
+| Motor 3 | 0.3 | 0.1 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.3 |
+| >= 0.9 | 0.1 |
+| >= 1 | 0.0 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 49.1 | 69.5% |
+| 30–50 m/s² | 15.1 | 21.4% |
+| 50–70 m/s² | 4.3 | 6.1% |
+| > 70 m/s² | 2.2 | 3.1% |
+| Total tracked | 70.6 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 27 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 12 count |
+
 ### Vehicle EL-074
 - Logs processed: 1
 | Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
@@ -1164,5 +1251,92 @@
 | Fatigue Metric | Value |
 | --- | ---: |
 | Peak accel events (>100 m/s²) | 0 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
+
+### Vehicle EL-076
+- Logs processed: 27
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 1.0 | 0.4 | 0.2 |
+| Motor 3 | 1.2 | 0.5 | 0.3 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 2.1 |
+| >= 0.9 | 1.0 |
+| >= 1 | 0.5 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 417.9 | 67.9% |
+| 30–50 m/s² | 147.8 | 24.0% |
+| 50–70 m/s² | 35.0 | 5.7% |
+| > 70 m/s² | 14.7 | 2.4% |
+| Total tracked | 615.4 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 176 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 52 count |
+
+### Vehicle EL-077
+- Logs processed: 4
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.0 | 0.0 | 0.0 |
+| Motor 3 | 0.0 | 0.0 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.0 |
+| >= 0.9 | 0.0 |
+| >= 1 | 0.0 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 31.9 | 67.9% |
+| 30–50 m/s² | 11.0 | 23.4% |
+| 50–70 m/s² | 3.3 | 7.1% |
+| > 70 m/s² | 0.7 | 1.6% |
+| Total tracked | 47.0 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 1 count |
+| Accel clipping time | 0.00 s |
+| Accel clipping events | 0 count |
+
+### Vehicle EL-083
+- Logs processed: 19
+| Motor | >= 0.8 of max output (min) | >= 0.9 of max output (min) | >= 1 of max output (min) |
+| --- | ---: | ---: | ---: |
+| Motor 0 | 0.0 | 0.0 | 0.0 |
+| Motor 1 | 0.0 | 0.0 | 0.0 |
+| Motor 2 | 0.0 | 0.0 | 0.0 |
+| Motor 3 | 0.0 | 0.0 | 0.0 |
+
+| Threshold | Total time (min) |
+| --- | ---: |
+| >= 0.8 | 0.0 |
+| >= 0.9 | 0.0 |
+| >= 1 | 0.0 |
+
+| Accel bin | Time (min) | Share |
+| --- | ---: | ---: |
+| < 30 m/s² | 272.0 | 64.3% |
+| 30–50 m/s² | 119.9 | 28.3% |
+| 50–70 m/s² | 28.0 | 6.6% |
+| > 70 m/s² | 3.4 | 0.8% |
+| Total tracked | 423.2 | 100.0% |
+
+| Fatigue Metric | Value |
+| --- | ---: |
+| Peak accel events (>100 m/s²) | 3 count |
 | Accel clipping time | 0.00 s |
 | Accel clipping events | 0 count |
